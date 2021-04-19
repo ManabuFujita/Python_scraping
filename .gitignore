@@ -1,0 +1,12 @@
+
+.DS_Store
+data/.DS_Store
+data/__pycache__/siteInfo.cpython-37.pyc
+data/data.xlsx
+data/data_template.xlsx
+data/link.txt
+data/siteInfo.py
+test/.DS_Store
+test/test1.py
+test/test2.py
+test/test3.py
