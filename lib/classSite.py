@@ -1,7 +1,7 @@
 import requests
 from bs4 import BeautifulSoup
 
-from data import siteInfo
+from data import config
 
 class Site:
 
