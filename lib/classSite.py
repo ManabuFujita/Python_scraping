@@ -15,7 +15,7 @@ class Site:
     def login(self):
         if self.session == '':
             self.startSession()
-        self.session.post(siteInfo.login_url, data=siteInfo.info)
+        self.session.post(config.login_url, data=config.info)
         self.is_login = True
 
     def getHtml(self, target_url, xlsh, col):
@@ -77,5 +77,5 @@ class Site:
             url = link.get('href')
             if url is None:
                 continue
-            if siteInfo.link_target in url:
-                f.write(siteInfo.link_prefix+url+'\n')
+            if config.link_target in url:
+                f.write(config.link_prefix+url+'\n')
