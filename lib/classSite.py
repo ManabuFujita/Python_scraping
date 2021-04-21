@@ -35,7 +35,7 @@ class Site:
 
         # アピールポイント
         val = bs2.find('p', {'class': 'appealText'}).get_text()
-        xlsh.cell(row=3,column=col).value = val
+        xlsh.cell(row=5,column=col).value = val
 
         # table = bs2.find('table', {'class': 'tbl01 jobView'}).tbody
         table = bs2.find_all('table', {'class': 'jobView'})
@@ -45,20 +45,22 @@ class Site:
             tr = tbl.find_all('tr')
 
             for t in tr:
-                # print(t)
 
-                th = t.find('th')
-                if not th is None:
-                    th = th.text.replace('\r', '').replace('\n', '').replace(' ', '')
-                td = t.find('td')
-                if not td is None:
-                    td = td.text.replace('\r', '').replace('\n', '').replace(' ', '')
+                if not t.find('td') is None:
+                    td = t.find('td').text.replace('\r', '').replace('\n', '').replace(' ', '')
+                else:
+                    continue
 
+                if not t.find('th') is None:
+                    th = t.find('th').text.replace('\r', '').replace('\n', '').replace(' ', '')
 
-                r = 2
+                r = 6
                 while not xlsh.cell(row=r,column=1).value is None:
                     if xlsh.cell(row=r,column=1).value == th :
-                        xlsh.cell(row=r,column=col).value = td
+                        if xlsh.cell(row=r,column=col).value is None:
+                            xlsh.cell(row=r,column=col).value = td
+                        else:
+                            xlsh.cell(row=r,column=col).value += td
                         break
                     r+=1
 
